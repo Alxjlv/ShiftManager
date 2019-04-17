@@ -1,7 +1,13 @@
 package shiftman.server;
 
 import java.util.List;
-
+/**
+ * This class is the main class responsible for access of the rostering system. 
+ * It stores references for other objects which also provide functionality for
+ * the server.
+ * @author Alex Verkerk
+ *
+ */
 public class ShiftManServer implements ShiftMan {
 
 	public ShiftManServer() {
