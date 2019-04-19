@@ -20,5 +20,9 @@ public class Roster {
 	public String assignStaff(String dayOfWeek, String startTime, String endTime, String givenName, String familyName, boolean isManager) {
 		return null;
 	}
+	
+	public void setWorkingHours(String dayOfWeek, String startTime, String endTime) throws Exception,RuntimeException {
 		
+		Day.valueOf(dayOfWeek).setWorkingHours(startTime,endTime);
+	}
 }

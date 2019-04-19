@@ -14,8 +14,10 @@ public class Tester {
 		Day.Friday.addShift(shift);
 		System.out.println(Day.Friday.giveShifts());
 		System.out.println(Day.Thursday.giveShifts());
-		String a = shift.convertShiftToString();
-		System.out.println(a);
+		//String a = shift.convertShiftToString();
+		//System.out.println(a);
+		String dayOfTheWeek = "Monday";
+		System.out.println(Day.valueOf(dayOfTheWeek).showDay());
 	}
 
 }

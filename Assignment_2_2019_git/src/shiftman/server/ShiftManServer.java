@@ -20,7 +20,14 @@ public class ShiftManServer implements ShiftMan{
 		return "Roster created successfully";
 	}
 	public String setWorkingHours(String dayOfWeek, String startTime, String endTime) {
-		return null;
+		try {
+			_roster.setWorkingHours(dayOfWeek, startTime, endTime);
+		}catch(RuntimeException r) {
+			return("ERROR: Illegal day of the week. Check your spelling");
+		}catch(Exception e) {
+			return("ERROR: Working hours are incorrect");
+		}
+		return "";
 	}
 	public String addShift(String dayOfWeek, String startTime, String endTime, String minimumWorkers) {
 		return null;
