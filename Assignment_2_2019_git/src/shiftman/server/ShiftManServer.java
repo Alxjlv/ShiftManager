@@ -8,15 +8,16 @@ import java.util.List;
  * @author Alex Verkerk
  *
  */
-public class ShiftManServer implements ShiftMan {
-
+public class ShiftManServer implements ShiftMan, IssueHandler {
+	private Roster _roster;
+	
 	public ShiftManServer() {
-		// TODO Auto-generated constructor stub
 		
 	}
 	
-	public String newRoster(String shopName) {
-		return null;
+	public String newRoster(String shopName) { // new shop object?
+		_roster = new Roster(shopName);
+		return "Roster created successfully";
 	}
 	public String setWorkingHours(String dayOfWeek, String startTime, String endTime) {
 		return null;
