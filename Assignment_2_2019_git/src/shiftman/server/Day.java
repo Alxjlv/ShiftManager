@@ -1,10 +1,9 @@
 package shiftman.server;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public enum Day {
-	mon("Monday"),tue("Tuesday"),wed("Wednesday"),thu("Thursday"),fri("Friday"),sat("Saturday"),sun("Sunday");
+	Monday("Monday"),Tuesday("Tuesday"),Wednesday("Wednesday"),Thursday("Thursday"),Friday("Friday"),Saturday("Saturday"),Sunday("Sunday");
 	private String _day;
 	private String[] _workingHours = new String[2];
 	private ShiftRegistry _shifts = new ShiftRegistry();
@@ -17,7 +16,7 @@ public enum Day {
 		return _day;
 	}
 	
-	public void addShift(Shift shift) { //change a bit so it stores shift objects
+	public void addShift(Shift shift) {
 		_shifts.addShift(shift);
 	}
 	

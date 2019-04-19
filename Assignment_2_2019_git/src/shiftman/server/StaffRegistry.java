@@ -32,5 +32,9 @@ public class StaffRegistry {
 			return false;
 		}
 	}
+	
+	public int numberOfStaff(){
+		return _staffRegistry.size();
+	}
 
 }

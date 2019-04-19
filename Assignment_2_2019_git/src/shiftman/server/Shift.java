@@ -36,6 +36,15 @@ public class Shift {
 	public String convertShiftToString() {
 		return _day + "[" + _startTime + "-" + _endTime + "]";
 	}
+	
+	public String howStaffed() {
+		if(_minWorkers<_assignedWorkers.numberOfStaff()) {
+			return "Overstaffed";
+		}else if(_minWorkers>_assignedWorkers.numberOfStaff()) {
+			return "Understaffed";
+		}
+		return"";
+	}
 
 
 }

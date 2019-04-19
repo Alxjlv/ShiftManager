@@ -11,7 +11,7 @@ public class ShiftRegistry {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void addShift(Shift shift) {
+	public void addShift(Shift shift) {//needs to do some validation/checking
 		_shifts.add(shift);
 	}
 	
@@ -21,6 +21,10 @@ public class ShiftRegistry {
 			shifts.add(_shifts.get(i).convertShiftToString());
 		}
 		return shifts;
+	}
+	
+	public int numberOfShifts(){
+		return _shifts.size();
 	}
 
 }
