@@ -23,7 +23,7 @@ public class ShiftManServer implements ShiftMan{
 		try {
 			_roster.setWorkingHours(dayOfWeek, startTime, endTime);
 		}catch(RuntimeException r) {
-			return("ERROR: Illegal day of the week. Check your spelling");
+			return("ERROR: Illegal day of the week: " + dayOfWeek);
 		}catch(Exception e) {
 			return("ERROR: Working hours are incorrect");
 		}
