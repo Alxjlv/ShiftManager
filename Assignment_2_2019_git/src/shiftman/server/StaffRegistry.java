@@ -5,26 +5,32 @@ import java.util.List;
 
 public class StaffRegistry {
 	
-	private List<Staff> _registry = new ArrayList<Staff>();
+	private List<Staff> _staffRegistry = new ArrayList<Staff>();
 	
 	public StaffRegistry() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String registerStaff(Staff person) {
-		if (!_registry.isEmpty()) {
-			for (Staff element : _registry) {
-				if (element.staffName().toLowerCase().equals(person.staffName().toLowerCase())) { //checking if registered, case insensitive
-					return "Staff member already registered";
-				}
-			}
-			_registry.add(person);
-			return "Staff member registered";
+	public void registerStaff(Staff person) throws Exception {
+		if (alreadyPresent(person)) {
+			throw new Exception("ERROR: Staff member already registered");
 		} else {
-			_registry.add(person);
-			return "Staff member registered";
+			_staffRegistry.add(person);
 		}
 		
+	}
+	
+	private boolean alreadyPresent(Staff person) {
+		if(_staffRegistry.isEmpty()) {
+			return false;
+		} else {
+			for (Staff element : _staffRegistry) {
+				if (element.staffName().toLowerCase().equals(person.staffName().toLowerCase())) { //checking if registered, case insensitive
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 }

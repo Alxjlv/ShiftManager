@@ -15,7 +15,7 @@ public class ShiftManServer implements ShiftMan{
 		
 	}
 	
-	public String newRoster(String shopName) { // new shop object?
+	public String newRoster(String shopName) { // new shop object? - new Roster object
 		_roster = new Roster(shopName);
 		return "Roster created successfully";
 	}
@@ -26,9 +26,17 @@ public class ShiftManServer implements ShiftMan{
 		return null;
 	}
 	public String registerStaff(String givenname, String familyName) {
-		return null;
+		Staff newStaff = new Staff(givenname,familyName);
+		try {
+		_roster.registerStaff(newStaff);
+		}
+		catch (Exception e) {
+			return e.getMessage();
+		}
+		return "";
 	}
 	public String assignStaff(String dayOfWeek, String startTime, String endTime, String givenName, String familyName, boolean isManager) {
+		//need to have something check if the staff member they're trying to assign is registered
 		return null;
 	}
 	public List<String> getRegisteredStaff(){
