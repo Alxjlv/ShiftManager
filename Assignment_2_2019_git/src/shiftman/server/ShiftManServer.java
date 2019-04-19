@@ -8,7 +8,7 @@ import java.util.List;
  * @author Alex Verkerk
  *
  */
-public class ShiftManServer implements ShiftMan, IssueHandler {
+public class ShiftManServer implements ShiftMan{
 	private Roster _roster;
 	
 	public ShiftManServer() {
