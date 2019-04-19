@@ -1,10 +1,5 @@
 package shiftman.client;
 
-
-
-import shiftman.server.Day;
-import shiftman.server.Roster;
-import shiftman.server.Shift;
 import shiftman.server.ShiftManServer;
 
 public class Tester {
