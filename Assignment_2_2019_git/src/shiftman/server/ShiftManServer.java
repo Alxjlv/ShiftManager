@@ -64,7 +64,7 @@ public class ShiftManServer implements ShiftMan{
 		return null;
 	}
 	public List<String> getRosterForDay(String dayOfWeek){
-		return Week.valueOf(dayOfWeek).giveShifts();
+		return null;
 	}
 	public List<String> getRosterForWorker(String workerName){
 		return null;

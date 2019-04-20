@@ -6,9 +6,11 @@ public class Roster {
 	
 	private String _shopName;
 	private StaffRegistry _registeredStaff = new StaffRegistry();
+	private Day _day;
 	
 	public Roster(String shopName) {
 		_shopName = shopName;
+		
 	}
 	
 	
@@ -26,6 +28,6 @@ public class Roster {
 	
 	public void setWorkingHours(String dayOfWeek, String startTime, String endTime) throws Exception,RuntimeException {
 		
-		Week.valueOf(dayOfWeek).setWorkingHours(startTime,endTime);
+		_day.setWorkingHours(startTime,endTime);
 	}
 }
