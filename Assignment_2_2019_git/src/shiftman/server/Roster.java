@@ -1,6 +1,6 @@
 package shiftman.server;
 
-import java.util.List;
+//import java.util.List;
 
 public class Roster {
 	
@@ -26,6 +26,6 @@ public class Roster {
 	
 	public void setWorkingHours(String dayOfWeek, String startTime, String endTime) throws Exception,RuntimeException {
 		
-		Day.valueOf(dayOfWeek).setWorkingHours(startTime,endTime);
+		Week.valueOf(dayOfWeek).setWorkingHours(startTime,endTime);
 	}
 }
