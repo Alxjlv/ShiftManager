@@ -19,7 +19,7 @@ public class Day {
 	
 	private enum Week {
 		Monday("Monday"),Tuesday("Tuesday"),Wednesday("Wednesday"),Thursday("Thursday"),Friday("Friday"),Saturday("Saturday"),Sunday("Sunday");
-		private String _dayOfWeek;
+		private final String _dayOfWeek;
 		
 		private Week(String day) {
 			_dayOfWeek = day;

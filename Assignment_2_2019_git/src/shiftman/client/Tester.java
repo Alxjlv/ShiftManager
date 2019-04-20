@@ -1,6 +1,7 @@
 package shiftman.client;
 
 import shiftman.server.ShiftManServer;
+import shiftman.server.Time;
 
 public class Tester {
 
@@ -18,13 +19,21 @@ public class Tester {
 		
 		ShiftManServer test = new ShiftManServer();
 		test.newRoster("jam city");
-		System.out.println(test.setWorkingHours("Monday", "8", "9"));
+		try {
+			Time tester = new Time("08:00","09:00");
+			tester.convertTime("08:00");
+			} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*System.out.println(test.setWorkingHours("Monday", "8", "9"));
 		System.out.println(test.registerStaff("Joah", "Noal"));
 		System.out.println(test.registerStaff("joah", "noal"));
 		System.out.println(test.addShift("Monday", "8", "9", "1"));
 		System.out.println(test.getRosterForDay("Monday"));
 		test.newRoster("Ebony sounds");
-		System.out.println(test.getRosterForDay("Monday"));
+		System.out.println(test.getRosterForDay("Monday"));*/
 		
 	}
 
