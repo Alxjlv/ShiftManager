@@ -1,5 +1,7 @@
 package shiftman.server;
 
+import java.util.List;
+
 public class Roster {
 	
 	private String _shopName;
@@ -8,6 +10,7 @@ public class Roster {
 	public Roster(String shopName) {
 		_shopName = shopName;
 	}
+	
 	
 	public void registerStaff(Staff person) throws Exception{
 		_registeredStaff.registerStaff(person);

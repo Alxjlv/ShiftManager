@@ -21,6 +21,11 @@ public class Tester {
 		System.out.println(test.setWorkingHours("Monday", "8", "9"));
 		System.out.println(test.registerStaff("Joah", "Noal"));
 		System.out.println(test.registerStaff("joah", "noal"));
+		System.out.println(test.addShift("Monday", "8", "9", "1"));
+		System.out.println(test.getRosterForDay("Monday"));
+		test.newRoster("Ebony sounds");
+		System.out.println(test.getRosterForDay("Monday"));
+		
 	}
 
 }

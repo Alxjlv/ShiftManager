@@ -30,7 +30,9 @@ public class ShiftManServer implements ShiftMan{
 		return "";
 	}
 	public String addShift(String dayOfWeek, String startTime, String endTime, String minimumWorkers) {
-		return null;
+		Shift newShift = new Shift(dayOfWeek,startTime,endTime,minimumWorkers);
+		
+		return "";
 	}
 	public String registerStaff(String givenname, String familyName) {
 		Staff newStaff = new Staff(givenname,familyName);
@@ -62,7 +64,7 @@ public class ShiftManServer implements ShiftMan{
 		return null;
 	}
 	public List<String> getRosterForDay(String dayOfWeek){
-		return null;
+		return Day.valueOf(dayOfWeek).giveShifts();
 	}
 	public List<String> getRosterForWorker(String workerName){
 		return null;
