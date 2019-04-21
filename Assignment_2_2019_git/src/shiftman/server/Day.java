@@ -5,12 +5,12 @@ import java.util.List;
 public class Day {
 
 	private String _day;
-	private String[] _workingHours = new String[2];
 	private ShiftRegistry _shifts = new ShiftRegistry();
+	private Time _workingHours;
 	
 	public Day(String day) throws Exception {
 		// TODO Auto-generated constructor stub
-		if(Week.valueOf(day)._dayOfWeek == day) {
+		if(Week.valueOf(day)._dayOfWeek == day) { //this wouldn't really work, I need to be more specific
 			_day = day;
 		}else {
 			throw new Exception("ERROR: Incorrect day of the week");
@@ -26,9 +26,8 @@ public class Day {
 		}
 	}
 	
-	public void setWorkingHours(String startTime,String endTime) { //need to check that it is a valid working hour period
-		_workingHours[0] = startTime;
-		_workingHours[1] = endTime;
+	public void setWorkingHours(String startTime,String endTime) throws Exception { //need to check that it is a valid working hour period
+		_workingHours = new Time(startTime,endTime);
 	}
 	
 	public String showDay() { //breaking encapsulation, need to change
