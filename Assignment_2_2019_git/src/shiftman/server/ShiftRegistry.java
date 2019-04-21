@@ -11,7 +11,8 @@ public class ShiftRegistry {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void addShift(Shift shift) {//needs to do some validation/checking
+	public void addShift(Shift shift,Time time) {//needs to do some validation/checking
+		
 		_shifts.add(shift);
 	}
 	

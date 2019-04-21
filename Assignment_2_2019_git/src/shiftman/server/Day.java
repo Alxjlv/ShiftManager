@@ -35,7 +35,7 @@ public class Day {
 	}
 	
 	public void addShift(Shift shift) {
-		_shifts.addShift(shift);
+		_shifts.addShift(shift,_workingHours);
 	}
 	
 	public List<String> giveShifts(){ //need to check if it's empty + make sure it's in the right format

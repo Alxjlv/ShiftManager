@@ -32,7 +32,7 @@ public class Shift {
 	}
 	
 	public String convertShiftToString() {
-		return null;
+		return _day+"["+_shiftTime.displayTime()+"]";
 	}
 	
 	public String howStaffed() {
