@@ -13,24 +13,26 @@ public class Time {
 		_endTime = endTime;
 		_start = convertTime(_startTime);
 		_end = convertTime(_endTime);
-		validate(this);
+		if((_start == _end)||(_start>_end)) {
+			throw new Exception("ERROR: Time interval "+ this.displayTime() +" is invalid");
+		}
 	}
 
 	public int convertTime(String time) throws Exception {
-		if(time.matches("\\d\\d:\\d\\d")) {
+		if(time.matches("\\d\\d:\\d\\d")) {//Checking correct format
 			int hours = Integer.parseInt(time.substring(0, 2));
 			int mins = Integer.parseInt(time.substring(3, 4));
-			if((hours < 24)&&(hours>=0)&&(mins<60)&&(mins>=0)) {
+			if(time.matches("([0-1]\\d|2[0-3]):[0-5]\\d")) {//checking that it's before midnight etc.
 				return hours*100 + mins;
 			}else {
-				throw new Exception("ERROR: Invalid time");
+				throw new Exception("ERROR: Time " + time + " is invalid");
 			}
 		}else {
-			throw new Exception("ERROR: Time is given in the wrong format");
+			throw new Exception("ERROR: Time " + time + " is in the wrong format");
 		}
 	}
 	
-	public void compareTimes(Time t) throws Exception {//possibly change this so I can tell if one time is completely within another
+	public void checkOverlap(Time t) throws Exception {//possibly change this so I can tell if one time is completely within another
 		if(_start > t.showStartTime()) {
 			if(_start <= t.showEndTime()) {
 				throw new Exception("ERROR: Time interval overlaps; Starts before another time interval ends");
@@ -47,12 +49,6 @@ public class Time {
 			return true;
 		}else {
 			return false;
-		}
-	}
-	
-	public void validate(Time t) throws Exception {
-		if((_start >=2400)||(_end >=2400)||(_start == _end)||(_start>_end)||(_start<0)||(_end<0)) {
-			throw new Exception("ERROR: Time interval given is invalid");
 		}
 	}
 	

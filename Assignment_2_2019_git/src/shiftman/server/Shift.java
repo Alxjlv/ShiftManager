@@ -23,7 +23,7 @@ public class Shift {
 		}
 	}
 	
-	public void addWorker(Staff worker) throws Exception {
+	public void addWorker(Staff worker) throws Exception {//also check if they're already on the shift
 		if (worker.staffName().equals(_manager.staffName())) {
 			throw new Exception("ERROR: this worker is already assigned to this shift as a manager");
 		} else {
