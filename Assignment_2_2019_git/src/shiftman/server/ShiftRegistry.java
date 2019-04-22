@@ -11,8 +11,12 @@ public class ShiftRegistry {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void addShift(Shift shift,Time time) {//needs to do some validation/checking
-		
+	public void addShift(Shift shift){//Working hours is optional
+		for(Shift pos : _shifts) {
+			if(pos.passTime().checkOverlap(shift.passTime())){
+				
+			}
+		}
 		_shifts.add(shift);
 	}
 	

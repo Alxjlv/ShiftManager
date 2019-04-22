@@ -34,8 +34,11 @@ public class Day {
 		return _day;
 	}
 	
-	public void addShift(Shift shift) {
-		_shifts.addShift(shift,_workingHours);
+	public void addShift(Shift shift) {//need extra validation - possibly in roster to check if the day is right
+		if(shift.passTime().checkWithinInterval(_workingHours)) {
+			_shifts.addShift(shift);
+		}
+		
 	}
 	
 	public List<String> giveShifts(){ //need to check if it's empty + make sure it's in the right format

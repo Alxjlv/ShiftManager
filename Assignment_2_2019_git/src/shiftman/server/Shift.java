@@ -35,6 +35,10 @@ public class Shift {
 		return _day+"["+_shiftTime.displayTime()+"]";
 	}
 	
+	public Time passTime() {
+		return _shiftTime;
+	}
+	
 	public String howStaffed() {
 		if(_minWorkers<_assignedWorkers.numberOfStaff()) {
 			return "Overstaffed";

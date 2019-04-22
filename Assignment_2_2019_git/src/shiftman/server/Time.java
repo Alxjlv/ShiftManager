@@ -32,20 +32,21 @@ public class Time {
 		}
 	}
 	
-	public void checkOverlap(Time t) throws Exception {//possibly change this so I can tell if one time is completely within another
-		if(_start > t.showStartTime()) {
-			if(_start <= t.showEndTime()) {
-				throw new Exception("ERROR: Time interval overlaps; Starts before another time interval ends");
+	public boolean checkOverlap(Time time2) {//possibly change this so I can tell if one time is completely within another
+		if(_start > time2.showStartTime()) {
+			if(_start <= time2.showEndTime()) {
+				return true;
 			}
-		}else if(_start < t.showStartTime()) {
-			if(_end >= t.showStartTime()) {
-				throw new Exception("ERROR: Time interval overlaps; Ends after another time interval starts");
+		}else if(_start < time2.showStartTime()) {
+			if(_end >= time2.showStartTime()) {
+				return true;
 			}
 		}
+		return false;
 	}
 	
-	public boolean checkWithinInterval(Time t) {
-		if((_start > t.showStartTime())&&(_end < t.showEndTime())) {
+	public boolean checkWithinInterval(Time time2) {
+		if((_start > time2.showStartTime())&&(_end < time2.showEndTime())) {
 			return true;
 		}else {
 			return false;
