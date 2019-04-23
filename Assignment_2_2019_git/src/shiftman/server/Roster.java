@@ -1,18 +1,35 @@
 package shiftman.server;
 
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Roster {
 	
 	private String _shopName;
 	private StaffRegistry _registeredStaff = new StaffRegistry();
+	private List<Day> _week = new ArrayList<Day>(7);
 	private Day _day;
 	
-	public Roster(String shopName) {
+	public Roster(String shopName) throws Exception {
 		_shopName = shopName;
-		
+		for(Week element:Week.values()) {
+			Day day = new Day(element._dayOfWeek);
+			_week.add(day);
+		}
 	}
 	
+	public List<Day> tempWeekGetter(){//TEMPORARY
+		return _week;
+	}
+	
+	private enum Week {
+		Monday("Monday"),Tuesday("Tuesday"),Wednesday("Wednesday"),Thursday("Thursday"),Friday("Friday"),Saturday("Saturday"),Sunday("Sunday");
+		private final String _dayOfWeek;
+		
+		private Week(String day) {
+			_dayOfWeek = day;
+		}
+	}
 	
 	public void registerStaff(Staff person) throws Exception{
 		_registeredStaff.registerStaff(person);

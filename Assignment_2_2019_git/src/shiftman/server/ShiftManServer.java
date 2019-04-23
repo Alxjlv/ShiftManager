@@ -15,9 +15,18 @@ public class ShiftManServer implements ShiftMan{
 		
 	}
 	
+	public Roster tempRosterGetter() {
+		return _roster;
+	}
+	
 	public String newRoster(String shopName) { // new shop object? - new Roster object
-		_roster = new Roster(shopName);
-		return "Roster created successfully";
+		try{
+			_roster = new Roster(shopName);
+			return "Roster created successfully";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "";
 	}
 	public String setWorkingHours(String dayOfWeek, String startTime, String endTime) {
 		try {

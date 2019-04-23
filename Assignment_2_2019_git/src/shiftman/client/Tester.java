@@ -22,6 +22,11 @@ public class Tester {
 		try {
 			Time tester = new Time("08:00","09:00");
 			tester.convertTime("08:00");
+			System.out.println("Successful");
+			for(int i=0;i<7;i++) {
+				System.out.println(test.tempRosterGetter().tempWeekGetter().get(i).showDay());
+			}
+			tester.convertTime("24:00");
 			} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
