@@ -3,7 +3,7 @@ package shiftman.server;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaffRegistry {
+public class StaffRegistry implements Sortable{
 	
 	private List<Staff> _staffRegistry = new ArrayList<Staff>();
 	
@@ -11,9 +11,9 @@ public class StaffRegistry {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void registerStaff(Staff person) throws Exception {
+	public void registerStaff(Staff person) throws UserErrorException {
 		if (alreadyPresent(person)) {
-			throw new Exception("ERROR: Staff member already registered");
+			throw new UserErrorException("ERROR: Staff member already registered");
 		} else {
 			_staffRegistry.add(person);
 		}
@@ -35,6 +35,26 @@ public class StaffRegistry {
 	
 	public int numberOfStaff(){
 		return _staffRegistry.size();
+	}
+	
+
+	public boolean checkRegistered(String staffName) {
+		
+		return false;
+	}
+	
+	public List<String> convertToString(){
+		List<String> registeredStaff = new ArrayList<String>();
+		if (_staffRegistry.size() == 0) {
+			return registeredStaff;
+		}else {
+			return registeredStaff;
+		}
+		
+	}
+	
+	public void sort() {
+		
 	}
 
 }

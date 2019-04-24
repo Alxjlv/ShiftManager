@@ -23,7 +23,7 @@ public class ShiftManServer implements ShiftMan{
 		try{
 			_roster = new Roster(shopName);
 			return "Roster created successfully";
-		}catch(Exception e){
+		}catch(UserErrorException e){
 			e.printStackTrace();
 		}
 		return "";
@@ -33,7 +33,7 @@ public class ShiftManServer implements ShiftMan{
 			_roster.setWorkingHours(dayOfWeek, startTime, endTime);
 		}catch(RuntimeException r) {
 			return("ERROR: Illegal day of the week: " + dayOfWeek);
-		}catch(Exception e) {
+		}catch(UserErrorException e) {
 			return("ERROR: Working hours are incorrect");
 		}
 		return "";
@@ -48,7 +48,7 @@ public class ShiftManServer implements ShiftMan{
 		try {
 		_roster.registerStaff(newStaff);
 		}
-		catch (Exception e) {
+		catch (UserErrorException e) {
 			return e.getMessage();
 		}
 		return "";
@@ -58,7 +58,7 @@ public class ShiftManServer implements ShiftMan{
 		return null;
 	}
 	public List<String> getRegisteredStaff(){
-		return null;
+		return _roster.getRegisteredStaff();
 	}
 	public List<String> getUnassignedStaff(){
 		return null;

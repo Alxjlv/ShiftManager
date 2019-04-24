@@ -10,7 +10,7 @@ public class Roster {
 	private List<Day> _week = new ArrayList<Day>(7);
 	private Day _day;
 	
-	public Roster(String shopName) throws Exception {
+	public Roster(String shopName) throws UserErrorException {
 		_shopName = shopName;
 		for(Week element:Week.values()) {
 			Day day = new Day(element._dayOfWeek);
@@ -31,7 +31,7 @@ public class Roster {
 		}
 	}
 	
-	public void registerStaff(Staff person) throws Exception{
+	public void registerStaff(Staff person) throws UserErrorException{
 		_registeredStaff.registerStaff(person);
 	}
 	
@@ -43,8 +43,12 @@ public class Roster {
 		return null;
 	}
 	
-	public void setWorkingHours(String dayOfWeek, String startTime, String endTime) throws Exception,RuntimeException {
+	public void setWorkingHours(String dayOfWeek, String startTime, String endTime) throws UserErrorException,RuntimeException {
 		
 		_day.setWorkingHours(startTime,endTime);
+	}
+	
+	public List<String> getRegisteredStaff(){
+		return _registeredStaff.convertToString();
 	}
 }

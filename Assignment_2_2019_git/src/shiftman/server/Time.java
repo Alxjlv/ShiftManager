@@ -7,28 +7,28 @@ public class Time {
 	private int _start;
 	private int _end;
 	
-	public Time(String startTime,String endTime) throws Exception {
+	public Time(String startTime,String endTime) throws UserErrorException {
 		// TODO Auto-generated constructor stub
 		_startTime = startTime;
 		_endTime = endTime;
 		_start = convertTime(_startTime);
 		_end = convertTime(_endTime);
 		if((_start == _end)||(_start>_end)) {
-			throw new Exception("ERROR: Time interval "+ this.displayTime() +" is invalid");
+			throw new UserErrorException("ERROR: Time interval "+ this.displayTime() +" is invalid");
 		}
 	}
 
-	public int convertTime(String time) throws Exception {
+	public int convertTime(String time) throws UserErrorException {
 		if(time.matches("\\d\\d:\\d\\d")) {//Checking correct format
 			int hours = Integer.parseInt(time.substring(0, 2));
 			int mins = Integer.parseInt(time.substring(3, 4));
 			if(time.matches("([0-1]\\d|2[0-3]):[0-5]\\d")) {//checking that it's before midnight etc.
 				return hours*100 + mins;
 			}else {
-				throw new Exception("ERROR: Time " + time + " is invalid");
+				throw new UserErrorException("ERROR: Time " + time + " is invalid");
 			}
 		}else {
-			throw new Exception("ERROR: Time " + time + " is in the wrong format");
+			throw new UserErrorException("ERROR: Time " + time + " is in the wrong format");
 		}
 	}
 	

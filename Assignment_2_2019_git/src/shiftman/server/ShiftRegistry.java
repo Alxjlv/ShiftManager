@@ -3,7 +3,7 @@ package shiftman.server;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShiftRegistry {
+public class ShiftRegistry implements Sortable{
 
 	private List<Shift> _shifts = new ArrayList<Shift>();
 	
@@ -30,6 +30,15 @@ public class ShiftRegistry {
 	
 	public int numberOfShifts(){
 		return _shifts.size();
+	}
+	
+	public void sort() {
+		
+	}
+	
+	public List<String> convertToString(){
+		List<String> shifts = new ArrayList<String>();
+		return shifts;
 	}
 
 }

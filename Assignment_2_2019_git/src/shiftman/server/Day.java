@@ -8,12 +8,12 @@ public class Day {
 	private ShiftRegistry _shifts = new ShiftRegistry();
 	private Time _workingHours;
 	
-	public Day(String day) throws Exception {
+	public Day(String day) throws UserErrorException {
 		// TODO Auto-generated constructor stub
 		if(Week.valueOf(day)._dayOfWeek == day) { //this wouldn't really work, I need to be more specific
 			_day = day;
 		}else {
-			throw new Exception("ERROR: Incorrect day of the week");
+			throw new UserErrorException("ERROR: Incorrect day of the week");
 		}
 	}
 	
@@ -26,7 +26,7 @@ public class Day {
 		}
 	}
 	
-	public void setWorkingHours(String startTime,String endTime) throws Exception { //need to check that it is a valid working hour period
+	public void setWorkingHours(String startTime,String endTime) throws UserErrorException { //need to check that it is a valid working hour period
 		_workingHours = new Time(startTime,endTime);
 	}
 	
