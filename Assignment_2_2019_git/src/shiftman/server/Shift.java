@@ -18,7 +18,7 @@ public class Shift {
 	//NEED CHECKING MECHANISM FOR IF IT IS WITHIN WORKING HOURS
 	
 	public void addManager(Staff manager) throws UserErrorException {
-		if (_manager == null) {
+		if (isManaged()) {
 			_manager = manager;
 		} else {
 			throw new UserErrorException("ERROR: "+_manager.staffName() +" is already assigned as manager to this shift");
@@ -30,6 +30,14 @@ public class Shift {
 			throw new UserErrorException("ERROR: "+_manager.staffName()+" is already assigned to this shift as a manager");
 		} else {
 			_assignedWorkers.registerStaff(worker);
+		}
+	}
+	
+	public boolean isManaged() {
+		if(_manager == null) {
+			return false;
+		}else {
+			return true;
 		}
 	}
 	

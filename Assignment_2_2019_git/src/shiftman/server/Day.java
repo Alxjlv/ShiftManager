@@ -37,6 +37,10 @@ public class Day {
 		
 	}
 	
+	public List<String> condition(String type){
+		return _shifts.shiftCondition(type);
+	}
+	
 	public List<String> giveShifts(){ //need to check if it's empty + make sure it's in the right format
 		return _shifts.convertToString();
 	}

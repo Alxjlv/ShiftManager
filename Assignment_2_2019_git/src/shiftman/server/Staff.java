@@ -7,7 +7,7 @@ public class Staff {
 
 	private String _familyName;
 	private String _givenName;
-	private List<Shift> _shiftsWorking = new ArrayList<Shift>();
+	private List<Shift> _shiftsWorking = new ArrayList<Shift>(); //shift registry here & below?
 	private List<Shift> _shiftsManaging = new ArrayList<Shift>();
 	
 	
@@ -23,6 +23,10 @@ public class Staff {
 		} else {
 			return true;
 		}
+	}
+	
+	public List<String> shiftsWorking(){ // need to sort
+		return null;
 	}
 	
 	public String staffName() {

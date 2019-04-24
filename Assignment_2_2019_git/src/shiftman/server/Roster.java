@@ -90,12 +90,30 @@ public class Roster {
 		throw new UserErrorException("Error: Day "+dayOfWeek+" is invalid");
 	}
 	
+	public List<String> getRosterForWorker(String workerName) throws UserErrorException{
+		Staff person = _registeredStaff.registeredMember(workerName);
+		person.staffName();
+		return null;
+	}
+	
 	public List<String> getRegisteredStaff(){
 		return _registeredStaff.convertToString();
 	}
 	
 	public List<String> getUnassignedStaff(){
 		return _registeredStaff.unassignedStaff();
+	}
+	
+	public List<String> shiftCondition(String type){
+		List<String> shiftCondition = new ArrayList<String>();
+		for(Day day:_week) {
+			if(day.condition(type).get(0).equals("")) {
+				break;
+			}else {
+				shiftCondition.addAll(day.condition(type));
+			}
+		}
+		return shiftCondition;
 	}
 	
 }

@@ -48,10 +48,14 @@ public class StaffRegistry{
 	
 	public List<String> unassignedStaff(){
 		List<String> unassigned = new ArrayList<String>();
-		sort();
-		for(Staff person:_staffRegistry) {
-			if(!person.working()) {
-				unassigned.add(person.staffName());
+		if(_staffRegistry.size()==0) {
+			unassigned.add("");
+		}else {
+			sort();
+			for(Staff person:_staffRegistry) {
+				if(!person.working()) {
+					unassigned.add(person.staffName());
+				}
 			}
 		}
 		return unassigned;

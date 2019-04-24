@@ -23,6 +23,35 @@ public class ShiftRegistry{
 		
 	}
 	
+	public List<String> shiftCondition(String type){ //type is not user controlled
+		List<String> condition = new ArrayList<String>();
+		if(_shifts.size()==0) {
+			condition.add("");
+			return condition;
+		}
+		for(Shift shift:_shifts) {
+			switch(type) {
+			case "Manager": {
+				if(!shift.isManaged()) {
+					condition.add(shift.convertShiftToString());
+				}
+			}
+			case "Overstaffed": {
+				if (shift.howStaffed().equals("Overstaffed")) {
+					condition.add(shift.convertShiftToString());
+				}
+			}
+			case "Understaffed": {
+				if (shift.howStaffed().equals("Understaffed")) {
+					condition.add(shift.convertShiftToString());
+				}
+			}
+			}
+		}
+		return condition;
+		
+	}
+	
 	public void addShift(Shift shift) throws UserErrorException{
 		for(Shift pos : _shifts) {
 			if(pos.passTime().checkOverlap(shift.passTime())){

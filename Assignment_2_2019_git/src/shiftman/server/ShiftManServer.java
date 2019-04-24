@@ -1,5 +1,6 @@
 package shiftman.server;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * This class is the main class responsible for access of the rostering system. 
@@ -80,19 +81,49 @@ public class ShiftManServer implements ShiftMan{
 		}
 	}
 	public List<String> getRegisteredStaff(){
-		return _roster.getRegisteredStaff();
+		if(_roster != null) {
+			return _roster.getRegisteredStaff();
+		}else {
+			List<String> empty = new ArrayList<String>();
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> getUnassignedStaff(){
-		return _roster.getUnassignedStaff();
+		if(_roster != null) {
+			return _roster.getUnassignedStaff();
+		}else {
+			List<String> empty = new ArrayList<String>();
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> shiftsWithoutManagers(){
-		return null;
+		if(_roster != null) {
+			return _roster.shiftCondition("Manager");
+		}else {
+			List<String> empty = new ArrayList<String>();
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> understaffedShifts(){
-		return null;
+		if(_roster != null) {
+			return _roster.shiftCondition("Understaffed");
+		}else {
+			List<String> empty = new ArrayList<String>();
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> overstaffedShifts(){
-		return null;
+		if(_roster != null) {
+			return _roster.shiftCondition("Overstaffed");
+		}else {
+			List<String> empty = new ArrayList<String>();
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> getRosterForDay(String dayOfWeek){
 		return null;
