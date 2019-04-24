@@ -14,7 +14,7 @@ public class StaffRegistry{
 	}
 	
 	public void registerStaff(Staff person) throws UserErrorException {
-		if (alreadyRegistered(person)) {
+		if (alreadyRegistered(person.staffName())) {
 			throw new UserErrorException("ERROR: Staff member already registered");
 		} else {
 			_staffRegistry.add(person);
@@ -22,17 +22,39 @@ public class StaffRegistry{
 		
 	}
 	
-	private boolean alreadyRegistered(Staff person) {
+	public boolean alreadyRegistered(String name) {
 		if(_staffRegistry.isEmpty()) {
 			return false;
 		} else {
-			for (Staff element : _staffRegistry) {
-				if (element.staffName().toLowerCase().equals(person.staffName().toLowerCase())) { //checking if registered, case insensitive
+			for (Staff person : _staffRegistry) {
+				if (person.staffName().toLowerCase().equals(name.toLowerCase())) { //checking if registered, case insensitive
 					return true;
 				}
 			}
 			return false;
 		}
+	}
+	
+	public Staff registeredMember(String name) throws UserErrorException {
+		if(alreadyRegistered(name)){
+			for(Staff person:_staffRegistry) {
+				if (person.staffName().toLowerCase().equals(name.toLowerCase())) {
+					return person;
+				}
+			}
+		}
+		throw new UserErrorException("ERROR: This person is not registered");
+	}
+	
+	public List<String> unassignedStaff(){
+		List<String> unassigned = new ArrayList<String>();
+		sort();
+		for(Staff person:_staffRegistry) {
+			if(!person.working()) {
+				unassigned.add(person.staffName());
+			}
+		}
+		return unassigned;
 	}
 	
 	public int numberOfStaff(){

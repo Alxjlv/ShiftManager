@@ -33,7 +33,11 @@ public class Roster {
 	public List<String> displayShifts(){
 		List<String> shifts = new ArrayList<String>();
 		for(Day day:_week) {
-			shifts.addAll(day.giveShifts());
+			if(day.giveShifts().get(0).equals("")) {
+				break;
+			}else {
+				shifts.addAll(day.giveShifts());
+			}
 		}
 		return shifts;
 	}
@@ -55,15 +59,32 @@ public class Roster {
 		return "This roster is for the shop " + _shopName;
 	}
 	
-	public String assignStaff(String dayOfWeek, String startTime, String endTime, String givenName, String familyName, boolean isManager) {
-		return null;
+	public String assignStaff(String dayOfWeek, String startTime, String endTime, String givenName, String familyName, boolean isManager) throws UserErrorException{
+		Staff staff = _registeredStaff.registeredMember(givenName+" "+familyName);//If the staff member isn't registered, an exception is thrown
+		
+		Day day = checkDay(dayOfWeek);//if the dayOfWeek is wrong, an exception is thrown
+		
+		Shift shift = day.findShift(startTime+"-"+endTime);//if the shift isn't an existing shift, then an exception will be thrown
+		
+		if(isManager) { //If they are managing the shift, then they are added as a manager to the shift, and have that shift added to them
+			shift.addManager(staff);//this will throw an exception if there is already a manager
+			staff.managingShift(shift);//adding this shift to their personal shifts
+		}else {
+			shift.addWorker(staff);
+			staff.workingShift(shift);
+		}
+		return "";
 	}
 	
 	public void setWorkingHours(String dayOfWeek, String startTime, String endTime) throws UserErrorException{
+		Day dayOfTheWeek = checkDay(dayOfWeek);
+		dayOfTheWeek.setWorkingHours(startTime, endTime);
+	}
+	
+	public Day checkDay(String dayOfWeek) throws UserErrorException {
 		for(Day day:_week) {
 			if(day.showDay().equals(dayOfWeek)) {
-				day.setWorkingHours(startTime, endTime);
-				return;
+				return day;
 			}
 		}
 		throw new UserErrorException("Error: Day "+dayOfWeek+" is invalid");
@@ -72,4 +93,9 @@ public class Roster {
 	public List<String> getRegisteredStaff(){
 		return _registeredStaff.convertToString();
 	}
+	
+	public List<String> getUnassignedStaff(){
+		return _registeredStaff.unassignedStaff();
+	}
+	
 }

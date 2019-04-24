@@ -13,6 +13,16 @@ public class ShiftRegistry{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Shift findShift(String time) throws UserErrorException {
+		for(Shift pos:_shifts) {
+			if(pos.displayTime().equals(time)){
+				return pos;
+			}
+		}
+		throw new UserErrorException("ERROR: This shift does not exist");
+		
+	}
+	
 	public void addShift(Shift shift) throws UserErrorException{
 		for(Shift pos : _shifts) {
 			if(pos.passTime().checkOverlap(shift.passTime())){

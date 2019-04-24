@@ -27,8 +27,8 @@ public class Tester {
 		test.registerStaff("John", "Apple");
 		test.registerStaff("Alex","Beet");
 		test.registerStaff("James", "Apple");
-		System.out.println(test.getRegisteredStaff());
-		
+		//System.out.println(test.getRegisteredStaff());
+		System.out.println(test.getUnassignedStaff());
 		for(Day day:test.tempRosterGetter().tempWeekGetter()) {
 			System.out.println(day.showDay());
 		}
@@ -38,6 +38,17 @@ public class Tester {
 		System.out.println(test.addShift("Monday", "11:00", "12:00", "1"));
 		System.out.println(test.addShift("Monday", "09:00", "10:00", "1"));
 		System.out.println(test.addShift("Tuesday", "14:30", "18:30", "2"));
+		System.out.println(test.addShift("Wednesday", "12:00", "12:30", "1"));
+		System.out.println(test.setWorkingHours("Wednesday", "01:00", "23:00"));
+		System.out.println(test.addShift("Wednesday", "12:00", "12:30", "1"));
+		System.out.println(test.addShift("Wednesday", "14:00", "12:30", "1"));
+		System.out.println(test.addShift("Wednesday", "14:00", "18:30", "1"));
+		System.out.println(test.addShift("Wednesday", "19:00", "23:30", "1"));
+		System.out.println(test.addShift("Wednesday", "19:00", "24:00", "1"));
+		System.out.println(test.assignStaff("Monday", "11:00", "12:00", "John", "Beet", true));
+		System.out.println(test.assignStaff("Monday", "11:00", "12:00", "John", "Beet", false));
+		System.out.println(test.getUnassignedStaff());
+
 		System.out.println(test.tempRosterGetter().displayShifts());
 		/*try {
 			Time tester = new Time("08:00","09:00");

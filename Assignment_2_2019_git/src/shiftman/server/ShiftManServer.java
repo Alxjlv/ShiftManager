@@ -68,13 +68,22 @@ public class ShiftManServer implements ShiftMan{
 	}
 	public String assignStaff(String dayOfWeek, String startTime, String endTime, String givenName, String familyName, boolean isManager) {
 		//need to have something check if the staff member they're trying to assign is registered
-		return null;
+		if(_roster != null) {
+			try{
+				_roster.assignStaff(dayOfWeek, startTime, endTime, givenName, familyName, isManager);
+			}catch(UserErrorException u){
+				return u.getMessage();
+			}
+			return givenName + " " + familyName+" assigned";
+		}else {
+			return "ERROR: A roster does not currently exist";
+		}
 	}
 	public List<String> getRegisteredStaff(){
 		return _roster.getRegisteredStaff();
 	}
 	public List<String> getUnassignedStaff(){
-		return null;
+		return _roster.getUnassignedStaff();
 	}
 	public List<String> shiftsWithoutManagers(){
 		return null;

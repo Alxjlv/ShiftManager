@@ -26,9 +26,16 @@ public class Staff {
 	}
 	
 	public String staffName() {
-		return "" + _givenName + " " + _familyName;
+		return _givenName + " " + _familyName;
 	}
 	
+	public void managingShift(Shift shift) {
+		_shiftsManaging.add(shift);
+	}
+	
+	public void workingShift(Shift shift) {
+		_shiftsWorking.add(shift);
+	}
 	//ADD METHOD OF ADDING SHIFTS THEY ARE ASSIGNED TO
 	
 	public String familyName() {//refactor to remove

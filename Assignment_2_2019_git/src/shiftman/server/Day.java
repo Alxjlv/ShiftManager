@@ -22,6 +22,10 @@ public class Day {
 		return _day;
 	}
 	
+	public Shift findShift(String time) throws UserErrorException {
+		return _shifts.findShift(time);
+	}
+	
 	public void addShift(Shift shift) throws UserErrorException {//need extra validation - possibly in roster to check if the day is right
 		if(_workingHours == null) {
 			throw new UserErrorException("ERROR: No working hours have been set for "+_day);
@@ -36,9 +40,4 @@ public class Day {
 	public List<String> giveShifts(){ //need to check if it's empty + make sure it's in the right format
 		return _shifts.convertToString();
 	}
-	
-	public String displayWorkingHours() {
-		return _workingHours.displayTime();
-	}
-	
 }
