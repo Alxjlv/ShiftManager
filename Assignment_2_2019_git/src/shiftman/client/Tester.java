@@ -1,7 +1,10 @@
 package shiftman.client;
 
+//import java.util.ArrayList;
+//import java.util.List;
+import shiftman.server.Day;
 import shiftman.server.ShiftManServer;
-import shiftman.server.Time;
+//import shiftman.server.Time;
 
 public class Tester {
 
@@ -18,8 +21,25 @@ public class Tester {
 		System.out.println(Day.valueOf(dayOfTheWeek).showDay());*/
 		
 		ShiftManServer test = new ShiftManServer();
+		System.out.println(test.addShift("Monday", "08:00", "09:00", "12"));
 		test.newRoster("jam city");
-		try {
+		test.registerStaff("John", "Beet");
+		test.registerStaff("John", "Apple");
+		test.registerStaff("Alex","Beet");
+		test.registerStaff("James", "Apple");
+		System.out.println(test.getRegisteredStaff());
+		
+		for(Day day:test.tempRosterGetter().tempWeekGetter()) {
+			System.out.println(day.showDay());
+		}
+		
+		System.out.println(test.setWorkingHours("Monday", "01:00", "23:00"));
+		System.out.println(test.setWorkingHours("Tuesday", "01:00", "23:00"));
+		System.out.println(test.addShift("Monday", "11:00", "12:00", "1"));
+		System.out.println(test.addShift("Monday", "09:00", "10:00", "1"));
+		System.out.println(test.addShift("Tuesday", "14:30", "18:30", "2"));
+		System.out.println(test.tempRosterGetter().displayShifts());
+		/*try {
 			Time tester = new Time("08:00","09:00");
 			tester.convertTime("08:00");
 			System.out.println("Successful");
@@ -30,7 +50,7 @@ public class Tester {
 			} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		/*System.out.println(test.setWorkingHours("Monday", "8", "9"));
 		System.out.println(test.registerStaff("Joah", "Noal"));

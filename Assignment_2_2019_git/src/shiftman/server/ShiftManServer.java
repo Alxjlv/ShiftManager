@@ -15,43 +15,56 @@ public class ShiftManServer implements ShiftMan{
 		
 	}
 	
-	public Roster tempRosterGetter() {
+	public Roster tempRosterGetter() {//DELETE
 		return _roster;
 	}
 	
-	public String newRoster(String shopName) { // new shop object? - new Roster object
+	public String newRoster(String shopName) {
 		try{
 			_roster = new Roster(shopName);
 			return "Roster created successfully";
 		}catch(UserErrorException e){
-			e.printStackTrace();
-		}
-		return "";
-	}
-	public String setWorkingHours(String dayOfWeek, String startTime, String endTime) {
-		try {
-			_roster.setWorkingHours(dayOfWeek, startTime, endTime);
-		}catch(RuntimeException r) {
-			return("ERROR: Illegal day of the week: " + dayOfWeek);
-		}catch(UserErrorException e) {
-			return("ERROR: Working hours are incorrect");
-		}
-		return "";
-	}
-	public String addShift(String dayOfWeek, String startTime, String endTime, String minimumWorkers) {
-		//Shift newShift = new Shift(dayOfWeek,startTime,endTime,minimumWorkers);
-		
-		return "";
-	}
-	public String registerStaff(String givenname, String familyName) {
-		Staff newStaff = new Staff(givenname,familyName);
-		try {
-		_roster.registerStaff(newStaff);
-		}
-		catch (UserErrorException e) {
 			return e.getMessage();
 		}
-		return "";
+	}
+	public String setWorkingHours(String dayOfWeek, String startTime, String endTime) {
+		if(_roster != null) {
+			try {
+				_roster.setWorkingHours(dayOfWeek, startTime, endTime);
+				
+			}catch(UserErrorException e) {
+				return e.getMessage();
+			}
+			return "Working hours set";
+		}else {
+			return "ERROR: A roster does not currently exist";
+		}
+	}
+	public String addShift(String dayOfWeek, String startTime, String endTime, String minimumWorkers) {
+		if(_roster != null) {
+			try {
+				_roster.addShift(dayOfWeek, startTime, endTime, minimumWorkers);
+			}catch (UserErrorException e){
+				return e.getMessage();
+			}
+			return "Shift added";
+		}else {
+			return "ERROR: A roster does not currently exist";
+		}
+	}
+	public String registerStaff(String givenname, String familyName) {
+		if(_roster != null) {
+			Staff newStaff = new Staff(givenname,familyName);
+			try {
+			_roster.registerStaff(newStaff);
+			}
+			catch (UserErrorException e) {
+				return e.getMessage();
+			}
+			return "Staff registered";
+		}else {
+			return "ERROR: A roster does not currently exist";
+		}
 	}
 	public String assignStaff(String dayOfWeek, String startTime, String endTime, String givenName, String familyName, boolean isManager) {
 		//need to have something check if the staff member they're trying to assign is registered

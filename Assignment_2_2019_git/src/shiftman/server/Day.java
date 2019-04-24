@@ -10,20 +10,8 @@ public class Day {
 	
 	public Day(String day) throws UserErrorException {
 		// TODO Auto-generated constructor stub
-		if(Week.valueOf(day)._dayOfWeek == day) { //this wouldn't really work, I need to be more specific
-			_day = day;
-		}else {
-			throw new UserErrorException("ERROR: Incorrect day of the week");
-		}
-	}
-	
-	private enum Week {
-		Monday("Monday"),Tuesday("Tuesday"),Wednesday("Wednesday"),Thursday("Thursday"),Friday("Friday"),Saturday("Saturday"),Sunday("Sunday");
-		private final String _dayOfWeek;
-		
-		private Week(String day) {
-			_dayOfWeek = day;
-		}
+		_day = day;
+
 	}
 	
 	public void setWorkingHours(String startTime,String endTime) throws UserErrorException { //need to check that it is a valid working hour period
@@ -34,15 +22,23 @@ public class Day {
 		return _day;
 	}
 	
-	public void addShift(Shift shift) {//need extra validation - possibly in roster to check if the day is right
-		if(shift.passTime().checkWithinInterval(_workingHours)) {
+	public void addShift(Shift shift) throws UserErrorException {//need extra validation - possibly in roster to check if the day is right
+		if(_workingHours == null) {
+			throw new UserErrorException("ERROR: No working hours have been set for "+_day);
+		}else if(shift.passTime().checkWithinInterval(_workingHours)) {
 			_shifts.addShift(shift);
+		}else {
+			throw new UserErrorException("ERROR: Shift is not within working hours: " + _workingHours.displayTime());
 		}
 		
 	}
 	
 	public List<String> giveShifts(){ //need to check if it's empty + make sure it's in the right format
-		return _shifts.displayShifts();
+		return _shifts.convertToString();
+	}
+	
+	public String displayWorkingHours() {
+		return _workingHours.displayTime();
 	}
 	
 }

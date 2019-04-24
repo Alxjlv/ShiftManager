@@ -2,7 +2,8 @@ package shiftman.server;
 
 import java.util.List;
 
-//Renamed to another interface which will possibly be more useful
+//Could possibly be changed to an abstract class
+//MARKED FOR DELETION/SEVERE REFACTORING
 public interface Sortable {
 	public void sort();
 	public List<String> convertToString();

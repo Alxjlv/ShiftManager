@@ -28,5 +28,15 @@ public class Staff {
 	public String staffName() {
 		return "" + _givenName + " " + _familyName;
 	}
+	
+	//ADD METHOD OF ADDING SHIFTS THEY ARE ASSIGNED TO
+	
+	public String familyName() {//refactor to remove
+		return _familyName;
+	}
+	
+	public String givenName() {//refactor to remove
+		return _givenName;
+	}
 
 }

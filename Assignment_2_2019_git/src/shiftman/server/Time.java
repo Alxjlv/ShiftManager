@@ -53,11 +53,11 @@ public class Time {
 		}
 	}
 	
-	public int showEndTime() {
+	public int showEndTime() {//try to refactor to remove
 		return _end;
 	}
 	
-	public int showStartTime() {
+	public int showStartTime() {//try to refactor to remove
 		return _start;
 	}
 	
