@@ -54,8 +54,10 @@ public class ShiftRegistry{
 	
 	public void addShift(Shift shift) throws UserErrorException{
 		for(Shift pos : _shifts) {
-			if(pos.passTime().checkOverlap(shift.passTime())){
-				throw new UserErrorException("ERROR: Shift overlaps with an existing shift");
+			if(pos.whichDay().equals(shift.whichDay())) {
+				if(pos.passTime().checkOverlap(shift.passTime())){
+					throw new UserErrorException("ERROR: Shift overlaps with an existing shift");
+				}
 			}
 		}
 		_shifts.add(shift);

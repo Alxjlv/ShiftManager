@@ -7,8 +7,8 @@ public class Staff {
 
 	private String _familyName;
 	private String _givenName;
-	private List<Shift> _shiftsWorking = new ArrayList<Shift>(); //shift registry here & below?
-	private List<Shift> _shiftsManaging = new ArrayList<Shift>();
+	private ShiftRegistry _shiftsWorking = new ShiftRegistry();
+	private ShiftRegistry _shiftsManaging = new ShiftRegistry();
 	
 	
 	public Staff(String givenName, String familyName) {
@@ -18,28 +18,43 @@ public class Staff {
 	}
 	
 	public boolean working() {
-		if(_shiftsWorking.isEmpty()&&_shiftsManaging.isEmpty()) {
+		if((_shiftsWorking.numberOfShifts() == 0)&&(_shiftsManaging.numberOfShifts()==0)/*_shiftsWorking.isEmpty()&&_shiftsManaging.isEmpty()*/) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	public List<String> shiftsWorking(){ // need to sort
-		return null;
+	public List<String> shiftsForStaff(boolean managing){ // need to sort
+		List<String> shifts = new ArrayList<String>();
+		ShiftRegistry holder;
+		if(managing) {
+			holder = _shiftsManaging;
+		}else {
+			holder = _shiftsWorking;
+		}
+		if(holder.numberOfShifts()==0) {
+			shifts.add("");
+			return shifts;
+		}else {
+			shifts.add(_familyName + ", "+_givenName);
+			shifts.addAll(holder.convertToString());
+			return shifts;
+		}
 	}
 	
 	public String staffName() {
 		return _givenName + " " + _familyName;
 	}
 	
-	public void managingShift(Shift shift) {
-		_shiftsManaging.add(shift);
+	public void onShift(Shift shift, boolean managing) throws UserErrorException {
+		if(managing) {
+			_shiftsManaging.addShift(shift);
+		}else {
+			_shiftsWorking.addShift(shift);
+		}
 	}
-	
-	public void workingShift(Shift shift) {
-		_shiftsWorking.add(shift);
-	}
+
 	//ADD METHOD OF ADDING SHIFTS THEY ARE ASSIGNED TO
 	
 	public String familyName() {//refactor to remove

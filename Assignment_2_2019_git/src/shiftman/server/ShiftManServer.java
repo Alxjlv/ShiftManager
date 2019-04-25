@@ -129,10 +129,32 @@ public class ShiftManServer implements ShiftMan{
 		return null;
 	}
 	public List<String> getRosterForWorker(String workerName){
-		return null;
+		List<String> empty = new ArrayList<String>();
+		if(_roster != null) {
+			try {
+				return _roster.getRosterForStaff(workerName, false);
+			}catch(UserErrorException u) {
+				empty.add(u.getMessage());
+				return empty;
+			}
+		}else {
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> getShiftsManagedBy(String managerName){
-		return null;
+		List<String> empty = new ArrayList<String>();
+		if(_roster != null) {
+			try {
+				return _roster.getRosterForStaff(managerName, true);
+			}catch(UserErrorException u) {
+				empty.add(u.getMessage());
+				return empty;
+			}
+		}else {
+			empty.add("");
+			return empty;
+		}
 	}
 	public String reportRosterIssues() {
 		return null;

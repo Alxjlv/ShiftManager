@@ -32,7 +32,7 @@ public class Time {
 		}
 	}
 	
-	public boolean checkOverlap(Time time2) {//possibly change this so I can tell if one time is completely within another
+	public boolean checkOverlap(Time time2) {
 		if(_start > time2.showStartTime()) {
 			if(_start <= time2.showEndTime()) {
 				return true;

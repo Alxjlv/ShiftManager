@@ -68,10 +68,10 @@ public class Roster {
 		
 		if(isManager) { //If they are managing the shift, then they are added as a manager to the shift, and have that shift added to them
 			shift.addManager(staff);//this will throw an exception if there is already a manager
-			staff.managingShift(shift);//adding this shift to their personal shifts
+			staff.onShift(shift,true);//adding this shift to their personal shifts
 		}else {
 			shift.addWorker(staff);
-			staff.workingShift(shift);
+			staff.onShift(shift,false);
 		}
 		return "";
 	}
@@ -90,10 +90,9 @@ public class Roster {
 		throw new UserErrorException("Error: Day "+dayOfWeek+" is invalid");
 	}
 	
-	public List<String> getRosterForWorker(String workerName) throws UserErrorException{
-		Staff person = _registeredStaff.registeredMember(workerName);
-		person.staffName();
-		return null;
+	public List<String> getRosterForStaff(String staffName,boolean managing) throws UserErrorException{
+		Staff person = _registeredStaff.registeredMember(staffName);
+		return person.shiftsForStaff(managing);
 	}
 	
 	public List<String> getRegisteredStaff(){
