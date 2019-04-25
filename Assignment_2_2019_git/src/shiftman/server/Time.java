@@ -21,7 +21,7 @@ public class Time {
 	public int convertTime(String time) throws UserErrorException {
 		if(time.matches("\\d\\d:\\d\\d")) {//Checking correct format
 			int hours = Integer.parseInt(time.substring(0, 2));
-			int mins = Integer.parseInt(time.substring(3, 4));
+			int mins = Integer.parseInt(time.substring(3, 5));
 			if(time.matches("([0-1]\\d|2[0-3]):[0-5]\\d")) {//checking that it's before midnight etc.
 				return hours*100 + mins;
 			}else {
