@@ -23,7 +23,7 @@ public class ShiftManServer implements ShiftMan{
 	public String newRoster(String shopName) {
 		try{
 			_roster = new Roster(shopName);
-			return "Roster created successfully";
+			return "";
 		}catch(UserErrorException e){
 			return e.getMessage();
 		}
@@ -36,7 +36,7 @@ public class ShiftManServer implements ShiftMan{
 			}catch(UserErrorException e) {
 				return e.getMessage();
 			}
-			return "Working hours set";
+			return "";
 		}else {
 			return "ERROR: A roster does not currently exist";
 		}
@@ -45,10 +45,10 @@ public class ShiftManServer implements ShiftMan{
 		if(_roster != null) {
 			try {
 				_roster.addShift(dayOfWeek, startTime, endTime, minimumWorkers);
+				return "";
 			}catch (UserErrorException e){
 				return e.getMessage();
 			}
-			return "Shift added";
 		}else {
 			return "ERROR: A roster does not currently exist";
 		}
@@ -62,7 +62,7 @@ public class ShiftManServer implements ShiftMan{
 			catch (UserErrorException e) {
 				return e.getMessage();
 			}
-			return "Staff registered";
+			return "";
 		}else {
 			return "ERROR: A roster does not currently exist";
 		}
@@ -72,10 +72,10 @@ public class ShiftManServer implements ShiftMan{
 		if(_roster != null) {
 			try{
 				_roster.assignStaff(dayOfWeek, startTime, endTime, givenName, familyName, isManager);
+				return ""; //givenName + " " + familyName+" assigned";
 			}catch(UserErrorException u){
 				return u.getMessage();
 			}
-			return givenName + " " + familyName+" assigned";
 		}else {
 			return "ERROR: A roster does not currently exist";
 		}
@@ -85,8 +85,9 @@ public class ShiftManServer implements ShiftMan{
 			return _roster.getRegisteredStaff();
 		}else {
 			List<String> empty = new ArrayList<String>();
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+
 		}
 	}
 	public List<String> getUnassignedStaff(){
@@ -94,8 +95,9 @@ public class ShiftManServer implements ShiftMan{
 			return _roster.getUnassignedStaff();
 		}else {
 			List<String> empty = new ArrayList<String>();
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+
 		}
 	}
 	public List<String> shiftsWithoutManagers(){
@@ -103,8 +105,9 @@ public class ShiftManServer implements ShiftMan{
 			return _roster.shiftCondition("Manager");
 		}else {
 			List<String> empty = new ArrayList<String>();
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+			
 		}
 	}
 	public List<String> understaffedShifts(){
@@ -112,7 +115,7 @@ public class ShiftManServer implements ShiftMan{
 			return _roster.shiftCondition("Understaffed");
 		}else {
 			List<String> empty = new ArrayList<String>();
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
 		}
 	}
@@ -121,8 +124,9 @@ public class ShiftManServer implements ShiftMan{
 			return _roster.shiftCondition("Overstaffed");
 		}else {
 			List<String> empty = new ArrayList<String>();
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+
 		}
 	}
 	public List<String> getRosterForDay(String dayOfWeek){
@@ -135,8 +139,9 @@ public class ShiftManServer implements ShiftMan{
 				return empty;
 			}
 		}else {
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+
 		}
 	}
 	public List<String> getRosterForWorker(String workerName){
@@ -149,8 +154,9 @@ public class ShiftManServer implements ShiftMan{
 				return empty;
 			}
 		}else {
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+
 		}
 	}
 	public List<String> getShiftsManagedBy(String managerName){
@@ -163,14 +169,21 @@ public class ShiftManServer implements ShiftMan{
 				return empty;
 			}
 		}else {
-			empty.add("");
+			empty.add("ERROR: no roster has been created");
 			return empty;
+
 		}
 	}
 	public String reportRosterIssues() {
 		return null;
 	}
 	public String displayRoster() {
-		return null;
+		String roster = "Roster is: ";
+		try {
+			roster += _roster.displayRoster();
+			return roster;
+		}catch(UserErrorException e) {
+			return e.getMessage();
+		}
 	}
 }

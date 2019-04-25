@@ -46,7 +46,7 @@ public class Time {
 	}
 	
 	public boolean checkWithinInterval(Time time2) {
-		if((_start > time2.showStartTime())&&(_end < time2.showEndTime())) {
+		if((_start >= time2.showStartTime())&&(_end <= time2.showEndTime())) {
 			return true;
 		}else {
 			return false;

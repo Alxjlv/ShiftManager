@@ -48,6 +48,9 @@ public class ShiftRegistry{
 			}
 			}
 		}
+		if(condition.size()==0) {
+			condition.add("");
+		}
 		return condition;
 		
 	}

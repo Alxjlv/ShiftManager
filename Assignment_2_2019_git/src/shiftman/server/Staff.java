@@ -34,7 +34,7 @@ public class Staff {
 			holder = _shiftsWorking;
 		}
 		if(holder.numberOfShifts()==0) {
-			shifts.add("");
+			//shifts.add("");
 			return shifts;
 		}else {
 			shifts.add(_familyName + ", "+_givenName);

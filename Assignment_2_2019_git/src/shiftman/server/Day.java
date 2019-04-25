@@ -30,10 +30,10 @@ public class Day {
 	public void addShift(Shift shift) throws UserErrorException {//need extra validation - possibly in roster to check if the day is right
 		if(_workingHours == null) {
 			throw new UserErrorException("ERROR: No working hours have been set for "+_day);
-		}else if(shift.passTime().checkWithinInterval(_workingHours)) {
-			_shifts.addShift(shift);
-		}else {
+		}else if(!shift.passTime().checkWithinInterval(_workingHours)) {
 			throw new UserErrorException("ERROR: Shift is not within working hours: " + _workingHours.displayTime());
+		}else {
+			_shifts.addShift(shift);
 		}
 		
 	}

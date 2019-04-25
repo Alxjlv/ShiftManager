@@ -26,21 +26,19 @@ public class Roster {
 			if(day.showDay() == dayOfWeek) {
 				Shift shift = new Shift(dayOfWeek,startTime,endTime,minimumWorkers);
 				day.addShift(shift);
+				return;
 			}
 		}
+		throw new UserErrorException("ERROR: Day of the week not found");
 	}
 	
-	/*public List<String> displayShifts(){//Currently just used for testing purposes
-		List<String> shifts = new ArrayList<String>();
+	public String displayRoster() throws UserErrorException {
+		String roster = new String();
 		for(Day day:_week) {
-			if(day.giveShifts().get(0).equals("")) {
-				break;
-			}else {
-				shifts.addAll(day.giveShifts());
-			}
+			roster += " "+ getRosterForDay(day.showDay());
 		}
-		return shifts;
-	}*/
+		return roster;
+	}
 	
 	private enum Week {
 		Monday("Monday"),Tuesday("Tuesday"),Wednesday("Wednesday"),Thursday("Thursday"),Friday("Friday"),Saturday("Saturday"),Sunday("Sunday");
@@ -91,11 +89,19 @@ public class Roster {
 	}
 	
 	public List<String> getRosterForStaff(String staffName,boolean managing) throws UserErrorException{
+		if (_registeredStaff.numberOfStaff()==0) {
+			List<String> empty = new ArrayList<String>();
+			return empty;
+		}
 		Staff person = _registeredStaff.registeredMember(staffName);
 		return person.shiftsForStaff(managing);
 	}
 	
 	public List<String> getRegisteredStaff(){
+		if (_registeredStaff.numberOfStaff()==0) {
+			List<String> empty = new ArrayList<String>();
+			return empty;
+		}
 		return _registeredStaff.convertToString();
 	}
 	
@@ -104,7 +110,8 @@ public class Roster {
 		for(Day day:_week) {
 			if(day.showDay() == dayOfWeek) {
 				if(day.giveShiftsDescription().get(0).equals("")) {
-					dayRoster.add("");
+					return dayRoster;
+					//dayRoster.add("");
 				}else {
 					dayRoster.add(_shopName);
 					dayRoster.addAll(day.giveShiftsDescription());
@@ -116,6 +123,10 @@ public class Roster {
 	}
 	
 	public List<String> getUnassignedStaff(){
+		if (_registeredStaff.numberOfStaff()==0) {
+			List<String> empty = new ArrayList<String>();
+			return empty;
+		}
 		return _registeredStaff.unassignedStaff();
 	}
 	

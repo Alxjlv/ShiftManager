@@ -5,6 +5,7 @@ import shiftman.server.ShiftManServer;
 
 /**
  * This shows another use of the ShiftMap API, in particular showing the
+ * java -cp softeng_251_test.jar;softeng251_a2_checker.jar shiftman.client.Checker
  * effect of {@link ShiftMan#newRoster(String)}.
  */
 public class NewRosterDemo {
@@ -28,7 +29,7 @@ public class NewRosterDemo {
 		System.out.println("\tGot status {" + status + "}");
 
 		System.out.println(">>Add shift 12:00-13:00 to Monday with minimum 1 worker");
-		scheduler.addShift("Monday", "12:00", "13:00", "1");
+		status = scheduler.addShift("Monday", "12:00", "13:00", "1");
 		System.out.println("\tGot status {" + status + "}");
 		
 		System.out.println(">>Register Bayta Darell as a staff member");
@@ -42,6 +43,10 @@ public class NewRosterDemo {
 		System.out.println(">>Schedule Darell Bayta as manager to Monday 09:00-12:00");
 		status = scheduler.assignStaff("Monday", "09:00", "12:00", "Bayta", "Darell", true);
 		System.out.println("\tGot status {" + status + "}");
+		
+		/*System.out.println(">>Schedule Darell Bayta as manager to Monday 12:00-13:00");
+		status = scheduler.assignStaff("Monday", "12:00", "13:00", "Bayta", "Darell", true);
+		System.out.println("\tGot status {" + status + "}");*/
 
 		System.out.println(">>Schedule Hari Sheldon as worker to Monday 12:00-13:00");
 		status = scheduler.assignStaff("Monday", "12:00", "13:00", "Hari", "Sheldon", false);

@@ -2,7 +2,7 @@ package shiftman.client;
 
 //import java.util.ArrayList;
 //import java.util.List;
-import shiftman.server.Day;
+//import shiftman.server.Day;
 import shiftman.server.ShiftManServer;
 //import shiftman.server.Time;
 
@@ -29,9 +29,9 @@ public class Tester {
 		test.registerStaff("James", "Apple");
 		//System.out.println(test.getRegisteredStaff());
 		System.out.println(test.getUnassignedStaff());
-		for(Day day:test.tempRosterGetter().tempWeekGetter()) {
+		/*for(Day day:test.tempRosterGetter().tempWeekGetter()) {
 			System.out.println(day.showDay());
-		}
+		}*/
 		
 		System.out.println(test.setWorkingHours("Monday", "01:00", "23:00"));
 		System.out.println(test.setWorkingHours("Tuesday", "01:00", "23:00"));
@@ -48,6 +48,7 @@ public class Tester {
 		System.out.println(test.assignStaff("Monday", "11:00", "12:00", "John", "Beet", true));
 		System.out.println(test.assignStaff("Monday", "11:00", "12:00", "John", "Beet", false));
 		System.out.println(test.getUnassignedStaff());
+		
 
 		//System.out.println(test.tempRosterGetter().displayShifts());
 		/*try {
