@@ -26,9 +26,17 @@ public class NewRosterDemo {
 		System.out.println("\tGot status {" + status + "}");
 		
 		System.out.println();
-		System.out.println(">>TESTING: Attempting to set working hours on an invalid day");
+		System.out.println(">>TESTING: Attempting to set invalid working");
 		System.out.println(">>Set working hours for Monday to 09:00-17:00");
 		status = scheduler.setWorkingHours("Wedday", "09:00", "17:00");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Set working hours for Tuesday to 09:00-24:00");
+		status = scheduler.setWorkingHours("Tuesday", "09:00", "24:00");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Set working hours for Tuesday to 19:00-14:00");
+		status = scheduler.setWorkingHours("Tuesday", "19:00", "14:00");
 		System.out.println("\tGot status {" + status + "}");
 		System.out.println();
 
@@ -60,6 +68,10 @@ public class NewRosterDemo {
 		System.out.println(">>Add shift 14:00-14:00 to Monday with minimum 1 worker");
 		status = scheduler.addShift("Monday", "14:00", "14:00", "1");
 		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Add shift 14:00-16:00 to Wedday with minimum 1 worker");
+		status = scheduler.addShift("Wedday", "14:00", "16:00", "1");
+		System.out.println("\tGot status {" + status + "}");
 		System.out.println();
 		
 		System.out.println(">>TESTING: adding shifts to a day without working hours");
@@ -77,6 +89,20 @@ public class NewRosterDemo {
 		status = scheduler.registerStaff("Hari", "Sheldon");
 		System.out.println("\tGot status {" + status + "}");
 		
+		System.out.println(">>Register hari sheldon as a staff member");
+		status = scheduler.registerStaff("hari", "sheldon");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Register Ewan Tempero as a staff member");
+		status = scheduler.registerStaff("Ewan", "Tempero");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Register Clark Thomborson as a staff member");
+		status = scheduler.registerStaff("Clark", "Thomborson");
+		System.out.println("\tGot status {" + status + "}");
+		System.out.println();
+		
+		System.out.println(">>TESTING: Assignment to shifts");
 		System.out.println(">>Schedule Darell Bayta as manager to Monday 09:00-12:00");
 		status = scheduler.assignStaff("Monday", "09:00", "12:00", "Bayta", "Darell", true);
 		System.out.println("\tGot status {" + status + "}");
@@ -89,7 +115,28 @@ public class NewRosterDemo {
 		status = scheduler.assignStaff("Monday", "12:01", "13:00", "Hari", "Sheldon", false);
 		System.out.println("\tGot status {" + status + "}");
 		
+		System.out.println(">>Schedule Ewan Tempero as manager to Monday 12:01-13:00");
+		status = scheduler.assignStaff("Monday", "12:01", "13:00", "Ewan", "Tempero", true);
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Schedule Ewan Tempero as worker to Monday 12:01-13:00");
+		status = scheduler.assignStaff("Monday", "12:01", "13:00", "Ewan", "Tempero", false);
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Schedule Ewan Tempero as worker to Monday 12:01-13:00");
+		status = scheduler.assignStaff("Monday", "12:01", "13:00", "Ewan", "Tempero", false);
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Schedule Ewan Tempero as worker to Monday 14:00-16:00");
+		status = scheduler.assignStaff("Monday", "14:00", "16:00", "Ewan", "Tempero", false);
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Schedule Peng Du as worker to Monday 12:01-13:00");
+		status = scheduler.assignStaff("Monday", "12:01", "13:00", "Peng", "Du", false);
+		System.out.println("\tGot status {" + status + "}");
 		System.out.println();
+				
+		System.out.println(">>TESTING: ");
 		System.out.println(">>Display current roster");
 		System.out.println(scheduler.displayRoster());
 		System.out.println();		

@@ -15,11 +15,7 @@ public class ShiftManServer implements ShiftMan{
 	public ShiftManServer() {
 		
 	}
-	
-	public Roster tempRosterGetter() {//DELETE
-		return _roster;
-	}
-	
+		
 	public String newRoster(String shopName) {
 		try{
 			_roster = new Roster(shopName);

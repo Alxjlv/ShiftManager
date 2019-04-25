@@ -17,10 +17,6 @@ public class Roster {
 		}
 	}
 	
-	public List<Day> tempWeekGetter(){//TEMPORARY - try refactor to remove
-		return _week;
-	}
-	
 	public void addShift(String dayOfWeek, String startTime, String endTime, String minimumWorkers) throws UserErrorException {
 		for(Day day:_week) {
 			if(day.showDay() == dayOfWeek) {
