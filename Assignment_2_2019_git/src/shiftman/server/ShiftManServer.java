@@ -126,7 +126,18 @@ public class ShiftManServer implements ShiftMan{
 		}
 	}
 	public List<String> getRosterForDay(String dayOfWeek){
-		return null;
+		List<String> empty = new ArrayList<String>();
+		if(_roster != null) {
+			try {
+				return _roster.getRosterForDay(dayOfWeek);
+			}catch(UserErrorException u) {
+				empty.add(u.getMessage());
+				return empty;
+			}
+		}else {
+			empty.add("");
+			return empty;
+		}
 	}
 	public List<String> getRosterForWorker(String workerName){
 		List<String> empty = new ArrayList<String>();

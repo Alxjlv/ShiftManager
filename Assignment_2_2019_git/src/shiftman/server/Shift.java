@@ -45,6 +45,25 @@ public class Shift {
 		return _day+"["+_shiftTime.displayTime()+"]";
 	}
 	
+	public String shiftDescription() {
+		String description = convertShiftToString();
+		if(isManaged()) {
+			description += " Manager: " + _manager.familyName() +", "+_manager.givenName();
+		}else {
+			description += " [No manager assigned]";
+		}
+		if(_assignedWorkers.numberOfStaff() > 0) {
+			description += "[";
+			for(String staff:_assignedWorkers.convertToString()) {
+				description += staff+", ";
+			}
+			description += "]";
+		}else {
+			description += "[No workers assigned]";
+		}
+		return description;
+	}
+	
 	public String displayTime() {
 		return _shiftTime.displayTime();
 	}

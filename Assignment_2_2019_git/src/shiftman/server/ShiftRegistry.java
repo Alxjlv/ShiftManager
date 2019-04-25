@@ -79,7 +79,7 @@ public class ShiftRegistry{
 		});
 	}
 	
-	public List<String> convertToString(){
+	public List<String> convertToString(boolean simple){
 		List<String> shifts = new ArrayList<String>();
 		if (_shifts.size() == 0) {
 			shifts.add("");
@@ -87,7 +87,12 @@ public class ShiftRegistry{
 		}else {
 			sort();
 			for(Shift shift:_shifts) {
-				shifts.add(shift.convertShiftToString());
+				if(simple) {
+					shifts.add(shift.convertShiftToString());
+				}else {
+					shifts.add(shift.shiftDescription());
+				}
+				
 			}
 			return shifts;
 		}

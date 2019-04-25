@@ -30,7 +30,7 @@ public class Roster {
 		}
 	}
 	
-	public List<String> displayShifts(){
+	/*public List<String> displayShifts(){//Currently just used for testing purposes
 		List<String> shifts = new ArrayList<String>();
 		for(Day day:_week) {
 			if(day.giveShifts().get(0).equals("")) {
@@ -40,7 +40,7 @@ public class Roster {
 			}
 		}
 		return shifts;
-	}
+	}*/
 	
 	private enum Week {
 		Monday("Monday"),Tuesday("Tuesday"),Wednesday("Wednesday"),Thursday("Thursday"),Friday("Friday"),Saturday("Saturday"),Sunday("Sunday");
@@ -55,7 +55,7 @@ public class Roster {
 		_registeredStaff.registerStaff(person);
 	}
 	
-	public String displayShopName() {
+	public String displayShopName() {//tag for removal
 		return "This roster is for the shop " + _shopName;
 	}
 	
@@ -97,6 +97,22 @@ public class Roster {
 	
 	public List<String> getRegisteredStaff(){
 		return _registeredStaff.convertToString();
+	}
+	
+	public List<String> getRosterForDay(String dayOfWeek) throws UserErrorException{
+		List<String> dayRoster = new ArrayList<String>();
+		for(Day day:_week) {
+			if(day.showDay() == dayOfWeek) {
+				if(day.giveShiftsDescription().get(0).equals("")) {
+					dayRoster.add("");
+				}else {
+					dayRoster.add(_shopName);
+					dayRoster.addAll(day.giveShiftsDescription());
+				}
+				return dayRoster;
+			}
+		}
+		throw new UserErrorException("ERROR: Day " + dayOfWeek + " is invalid");
 	}
 	
 	public List<String> getUnassignedStaff(){

@@ -38,7 +38,7 @@ public class Staff {
 			return shifts;
 		}else {
 			shifts.add(_familyName + ", "+_givenName);
-			shifts.addAll(holder.convertToString());
+			shifts.addAll(holder.convertToString(true));
 			return shifts;
 		}
 	}

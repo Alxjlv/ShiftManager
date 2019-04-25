@@ -49,7 +49,7 @@ public class Tester {
 		System.out.println(test.assignStaff("Monday", "11:00", "12:00", "John", "Beet", false));
 		System.out.println(test.getUnassignedStaff());
 
-		System.out.println(test.tempRosterGetter().displayShifts());
+		//System.out.println(test.tempRosterGetter().displayShifts());
 		/*try {
 			Time tester = new Time("08:00","09:00");
 			tester.convertTime("08:00");

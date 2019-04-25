@@ -1,5 +1,6 @@
 package shiftman.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Day {
@@ -41,7 +42,16 @@ public class Day {
 		return _shifts.shiftCondition(type);
 	}
 	
-	public List<String> giveShifts(){ //need to check if it's empty + make sure it's in the right format
-		return _shifts.convertToString();
+	public List<String> giveShiftsDescription(){ //need to check if it's empty + make sure it's in the right format
+		List<String> dayRoster = new ArrayList<String>();
+		if((_shifts.numberOfShifts()==0)||(_workingHours == null)) {
+			dayRoster.add("");
+			return dayRoster;
+		}else {
+			dayRoster.add(_day + " " + _workingHours.displayTime());
+			
+		}
+		dayRoster.addAll(_shifts.convertToString(false));
+		return dayRoster;
 	}
 }
