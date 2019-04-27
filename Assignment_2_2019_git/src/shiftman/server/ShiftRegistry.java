@@ -35,16 +35,19 @@ public class ShiftRegistry{
 				if(!shift.isManaged()) {
 					condition.add(shift.convertShiftToString());
 				}
+				break;
 			}
 			case "Overstaffed": {
 				if (shift.howStaffed().equals("Overstaffed")) {
 					condition.add(shift.convertShiftToString());
 				}
+				break;
 			}
 			case "Understaffed": {
 				if (shift.howStaffed().equals("Understaffed")) {
 					condition.add(shift.convertShiftToString());
 				}
+				break;
 			}
 			}
 		}
