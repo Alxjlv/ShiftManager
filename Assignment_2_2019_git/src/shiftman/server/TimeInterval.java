@@ -1,13 +1,13 @@
 package shiftman.server;
 
-public class Time {
+public class TimeInterval {
 
 	private String _startTime;
 	private String _endTime;
 	private int _start;
 	private int _end;
 	
-	public Time(String startTime,String endTime) throws UserErrorException {
+	public TimeInterval(String startTime,String endTime) throws UserErrorException {
 		// TODO Auto-generated constructor stub
 		_startTime = startTime;
 		_endTime = endTime;
@@ -32,7 +32,7 @@ public class Time {
 		}
 	}
 	
-	public boolean checkOverlap(Time time2) {
+	public boolean checkOverlap(TimeInterval time2) {
 		if(_start > time2.showStartTime()) {
 			if(_start <= time2.showEndTime()) {
 				return true;
@@ -45,7 +45,7 @@ public class Time {
 		return false;
 	}
 	
-	public boolean checkWithinInterval(Time time2) {
+	public boolean checkWithinInterval(TimeInterval time2) {
 		if((_start >= time2.showStartTime())&&(_end <= time2.showEndTime())) {
 			return true;
 		}else {

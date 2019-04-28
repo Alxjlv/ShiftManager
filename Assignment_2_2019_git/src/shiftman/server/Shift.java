@@ -3,7 +3,7 @@ package shiftman.server;
 public class Shift {
 
 	private String _day;
-	private Time _shiftTime;
+	private TimeInterval _shiftTime;
 	private Staff _manager;
 	private int _minWorkers;
 	private StaffRegistry _assignedWorkers = new StaffRegistry();//this should really be a staff registry - will allow checking of duplication
@@ -11,7 +11,7 @@ public class Shift {
 	public Shift(String day, String startTime, String endTime, String minWorkers) throws UserErrorException { //has day, start time and end time - also manager and workers?
 		// TODO Auto-generated constructor stub
 		_day = day;
-		_shiftTime = new Time(startTime,endTime);
+		_shiftTime = new TimeInterval(startTime,endTime);
 		_minWorkers = Integer.parseInt(minWorkers);
 	}
 	
@@ -72,7 +72,7 @@ public class Shift {
 		return _shiftTime.displayTime();
 	}
 	
-	public Time passTime() {//try refactor to remove
+	public TimeInterval passTime() {//try refactor to remove
 		return _shiftTime;
 	}
 	

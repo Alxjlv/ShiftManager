@@ -7,7 +7,7 @@ public class Day {
 
 	private String _day;
 	private ShiftRegistry _shifts = new ShiftRegistry();
-	private Time _workingHours;
+	private TimeInterval _workingHours;
 	
 	public Day(String day) throws UserErrorException {
 		// TODO Auto-generated constructor stub
@@ -16,7 +16,7 @@ public class Day {
 	}
 	
 	public void setWorkingHours(String startTime,String endTime) throws UserErrorException { //need to check that it is a valid working hour period
-		_workingHours = new Time(startTime,endTime);
+		_workingHours = new TimeInterval(startTime,endTime);
 	}
 	
 	public String showDay() { //breaking encapsulation, need to change
