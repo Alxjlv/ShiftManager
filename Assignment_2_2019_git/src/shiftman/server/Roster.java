@@ -140,7 +140,7 @@ public class Roster {
 				return day;
 			}
 		}
-		throw new UserErrorException("Error: Day "+dayOfWeek+" is invalid");
+		throw new UserErrorException("ERROR: Day "+dayOfWeek+" is invalid");
 	}
 	/**
 	 * This method will return the shifts a staff member is managing OR working. If they aren't working any shifts, 

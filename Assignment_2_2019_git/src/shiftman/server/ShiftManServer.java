@@ -147,7 +147,7 @@ public class ShiftManServer implements ShiftMan{
 	}
 	/**
 	 * Requests every staff member who isn't working any shifts
-	 * @return A list of strings containing every staff member who isn't working shifts
+	 * @return A list of strings containing every staff member who isn't working/managing shifts
 	 * This is ordered by last name then first name.
 	 */
 	public List<String> getUnassignedStaff(){

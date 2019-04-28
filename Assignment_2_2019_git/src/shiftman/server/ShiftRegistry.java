@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
+/**
+ * 
+ * @author Alex Verkerk
+ *
+ */
 public class ShiftRegistry{
 
 	private List<Shift> _shifts = new ArrayList<Shift>();
