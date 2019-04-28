@@ -6,7 +6,7 @@ public class Shift {
 	private TimeInterval _shiftTime;
 	private Staff _manager = null;
 	private int _minWorkers;
-	private StaffRegistry _assignedWorkers = new StaffRegistry();//this should really be a staff registry - will allow checking of duplication
+	private StaffRegistry _assignedWorkers = new StaffRegistry();//this should really be a staff registry - will allow checking of duplication+
 	
 	public Shift(String day, String startTime, String endTime, String minWorkers) throws UserErrorException { //has day, start time and end time - also manager and workers?
 		// TODO Auto-generated constructor stub

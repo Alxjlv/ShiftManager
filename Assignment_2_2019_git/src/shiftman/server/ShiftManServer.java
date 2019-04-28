@@ -159,86 +159,139 @@ public class ShiftManServer implements ShiftMan{
 	/**
 	 * Requests the shifts which aren't currently managed/don't have a staff member 
 	 * assigned as manager
-	 * @return a list of every shift without a manager on it. this can return a blank
-	 * list if there are no 
+	 * @return a list of every shift without a manager on it. This can return a blank
+	 * list if there are no shifts without managers
 	 */
 	public List<String> shiftsWithoutManagers(){
 		if(_roster != null) {
+			//Selecting one of the states of shiftCondition
 			return _roster.shiftCondition("Managed");
 		}else {
+			//If there is no roster, then create a list and populate it with an error
 			List<String> empty = new ArrayList<String>();
 			empty.add("ERROR: no roster has been created");
 			return empty;
-			
 		}
 	}
+	/**
+	 * Requests the shifts that are understaffed (as in there are fewer workers than the
+	 * minimum workers parameter of the shift)
+	 * @return a list of each shift without enough staff. If there aren't any understaffed
+	 * shifts then the list will be empty
+	 */
 	public List<String> understaffedShifts(){
 		if(_roster != null) {
+			//Selecting one of the other states of shiftCondition
 			return _roster.shiftCondition("Understaffed");
 		}else {
+			//If there is no roster, then create a list and populate it with an error
 			List<String> empty = new ArrayList<String>();
 			empty.add("ERROR: no roster has been created");
 			return empty;
 		}
 	}
+	/**
+	 * Requests the shifts that are overstaffed (more workers than the minimum)
+	 * @return a list of each shift with too many staff. If there aren't any overstaffed
+	 * shifts then the list will be empty.
+	 */
 	public List<String> overstaffedShifts(){
 		if(_roster != null) {
+			//Selecting one of the other states of shiftCondition
 			return _roster.shiftCondition("Overstaffed");
 		}else {
+			//If there is no roster, then create a list and populate it with an error
 			List<String> empty = new ArrayList<String>();
 			empty.add("ERROR: no roster has been created");
 			return empty;
 
 		}
 	}
+	/**
+	 * Requests a suitably formatted roster for a specific day. This will be a list
+	 * with the shop name, then working hours, then a list of shifts
+	 * @param dayOfWeek The day of the week the roster is for
+	 * @return A list of strings with shop name, working hours, and a list of shifts
+	 * on that day. This list can be blank if there aren't any shifts on that day.
+	 */
 	public List<String> getRosterForDay(String dayOfWeek){
 		List<String> empty = new ArrayList<String>();
 		if(_roster != null) {
 			try {
+				//Calls the corresponding method in the Roster
 				return _roster.getRosterForDay(dayOfWeek);
 			}catch(UserErrorException u) {
+				//Catching exceptions caused by the day of week being invalid
 				empty.add(u.getMessage());
 				return empty;
 			}
 		}else {
+			//If a roster doesn't exist
 			empty.add("ERROR: no roster has been created");
 			return empty;
-
 		}
 	}
+	/**
+	 * Requests the shifts a worker is working on
+	 * @param workerName The name of the worker in the format "first name last name"
+	 * @return Returns a list of shifts that this person is working on
+	 * If they aren't working any shifts, then the list will be blank. If the worker isn't
+	 * registered, then an exception will be caught.
+	 */
 	public List<String> getRosterForWorker(String workerName){
 		List<String> empty = new ArrayList<String>();
 		if(_roster != null) {
 			try {
+				//call to getRosterForStaff, where false means it is for a worker
 				return _roster.getRosterForStaff(workerName, false);
 			}catch(UserErrorException u) {
+				//This error is likely to occur due to the worker not being registered
 				empty.add(u.getMessage());
 				return empty;
 			}
 		}else {
+			//If a roster doesn't exist
 			empty.add("ERROR: no roster has been created");
 			return empty;
 
 		}
 	}
+	/**
+	 * Requests all the shifts a specific worker is managing
+	 * @param managerName The name of the manager in the format "first name last name"
+	 * @return Returns a list of shifts that this person is managing
+	 * If they aren't managing any shifts, then the list will be blank. If the manager isn't
+	 * registered, then an exception will be caught.
+	 */
 	public List<String> getShiftsManagedBy(String managerName){
 		List<String> empty = new ArrayList<String>();
 		if(_roster != null) {
 			try {
+				//call to getRosterForStaff, where true means it is for a manager
 				return _roster.getRosterForStaff(managerName, true);
 			}catch(UserErrorException u) {
+				//This error is likely to occur due to the manager not being registered
 				empty.add(u.getMessage());
 				return empty;
 			}
 		}else {
+			//If a roster doesn't exist
 			empty.add("ERROR: no roster has been created");
 			return empty;
 
 		}
 	}
+	/**
+	 * Unimplemented, but this method was meant to @return the issues with the roster
+	 */
 	public String reportRosterIssues() {
 		return null;
 	}
+	/**
+	 * Partially implemented, this method gives a very basic printout of everything in the
+	 * roster.
+	 * @return returns a single string containing every shift and every registered staff member
+	 */
 	public String displayRoster() {
 		String roster = "Roster is: ";
 		try {
