@@ -9,7 +9,7 @@ public class Roster {
 	private StaffRegistry _registeredStaff = new StaffRegistry();
 	private List<Day> _week = new ArrayList<Day>();
 	
-	public Roster(String shopName) throws UserErrorException {
+	public Roster(String shopName){
 		_shopName = shopName;
 		for(Week week:Week.values()) {
 			Day day = new Day(week._dayOfWeek);
@@ -130,7 +130,7 @@ public class Roster {
 		List<String> shiftCondition = new ArrayList<String>();
 		for(Day day:_week) {
 			if(day.condition(type).get(0).equals("")) {
-				break;
+				continue;
 			}else {
 				shiftCondition.addAll(day.condition(type));
 			}

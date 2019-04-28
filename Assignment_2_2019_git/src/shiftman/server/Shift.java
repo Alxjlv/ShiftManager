@@ -4,7 +4,7 @@ public class Shift {
 
 	private String _day;
 	private TimeInterval _shiftTime;
-	private Staff _manager;
+	private Staff _manager = null;
 	private int _minWorkers;
 	private StaffRegistry _assignedWorkers = new StaffRegistry();//this should really be a staff registry - will allow checking of duplication
 	
@@ -61,6 +61,7 @@ public class Shift {
 			for(String staff:_assignedWorkers.convertToString()) {
 				description += staff+", ";
 			}
+			description = description.substring(0, description.length()-2);
 			description += "]";
 		}else {
 			description += "[No workers assigned]";
@@ -86,7 +87,7 @@ public class Shift {
 		}else if(_minWorkers>_assignedWorkers.numberOfStaff()) {
 			return "Understaffed";
 		}
-		return"";
+		return "";
 	}
 
 

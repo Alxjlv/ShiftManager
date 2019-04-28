@@ -9,7 +9,7 @@ public class Day {
 	private ShiftRegistry _shifts = new ShiftRegistry();
 	private TimeInterval _workingHours;
 	
-	public Day(String day) throws UserErrorException {
+	public Day(String day){
 		// TODO Auto-generated constructor stub
 		_day = day;
 
@@ -39,6 +39,7 @@ public class Day {
 	}
 	
 	public List<String> condition(String type){
+		_shifts.sort();
 		return _shifts.shiftCondition(type);
 	}
 	

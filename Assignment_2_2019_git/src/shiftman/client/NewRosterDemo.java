@@ -40,9 +40,9 @@ public class NewRosterDemo {
 		System.out.println("\tGot status {" + status + "}");
 		System.out.println();
 
-		System.out.println(">>TESTING: Adding shifts & checking validity");
+		System.out.println(">>TESTING: Adding shifts & checking validity (5 min workers)");
 		System.out.println(">>Add shift 09:00-12:00 to Monday");
-		status = scheduler.addShift("Monday", "09:00", "12:00", "0");
+		status = scheduler.addShift("Monday", "09:00", "12:00", "5");
 		System.out.println("\tGot status {" + status + "}");
 
 		System.out.println(">>Add shift 12:01-13:00 to Monday with minimum 1 worker");
@@ -136,6 +136,25 @@ public class NewRosterDemo {
 		System.out.println("\tGot status {" + status + "}");
 		System.out.println();
 				
+		System.out.println(">>TESTING: ");
+		
+		System.out.println(">>Set working hours for Tuesday to 09:00-22:00");
+		status = scheduler.setWorkingHours("Tuesday", "09:00", "22:00");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Add shift 12:01-13:00 to Tuesday with minimum 2 workers");
+		status = scheduler.addShift("Tuesday", "12:01", "13:00", "2");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Add shift 09:00-11:00 to Tuesday with minimum 2 workers");
+		status = scheduler.addShift("Tuesday", "09:00", "11:00", "2");
+		System.out.println("\tGot status {" + status + "}");
+		
+		System.out.println(">>Checking how staffed");
+		System.out.println(scheduler.understaffedShifts());
+		System.out.println(scheduler.overstaffedShifts());
+		System.out.println(scheduler.shiftsWithoutManagers());
+		
 		System.out.println(">>TESTING: ");
 		System.out.println(">>Display current roster");
 		System.out.println(scheduler.displayRoster());

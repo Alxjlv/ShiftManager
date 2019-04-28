@@ -29,9 +29,9 @@ public class ShiftRegistry{
 			condition.add("");
 			return condition;
 		}
-		for(Shift shift:_shifts) {
+		for(Shift shift:_shifts) {				
 			switch(type) {
-			case "Manager": {
+			case "Managed": {
 				if(!shift.isManaged()) {
 					condition.add(shift.convertShiftToString());
 				}
@@ -51,10 +51,12 @@ public class ShiftRegistry{
 			}
 			}
 		}
-		if(condition.size()==0) {
+		if(condition.size()>0) {
+			return condition;
+		}else {
 			condition.add("");
+			return condition;
 		}
-		return condition;
 		
 	}
 	
@@ -98,7 +100,6 @@ public class ShiftRegistry{
 				}else {
 					shifts.add(shift.shiftDescription());
 				}
-				
 			}
 			return shifts;
 		}
