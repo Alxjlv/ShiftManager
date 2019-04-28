@@ -13,8 +13,12 @@ import java.util.List;
  * @author Alex Verkerk
  */
 public class ShiftManServer implements ShiftMan{
+	//This stores the roster object when it is created
 	private Roster _roster;
 	
+	/**
+	 * Default constructor
+	 */
 	public ShiftManServer() {
 		
 	}
@@ -84,6 +88,7 @@ public class ShiftManServer implements ShiftMan{
 	 */
 	public String registerStaff(String givenname, String familyName) {
 		if(_roster != null) {//Checking if the roster already exists
+			//Creating a new Staff object with the name given.
 			Staff newStaff = new Staff(givenname,familyName);
 			try {
 				//A call to the method in the roster which does the same thing
@@ -165,7 +170,7 @@ public class ShiftManServer implements ShiftMan{
 	public List<String> shiftsWithoutManagers(){
 		if(_roster != null) {
 			//Selecting one of the states of shiftCondition
-			return _roster.shiftCondition("Managed");
+			return _roster.shiftCondition("Unmanaged");
 		}else {
 			//If there is no roster, then create a list and populate it with an error
 			List<String> empty = new ArrayList<String>();

@@ -31,7 +31,7 @@ public class ShiftRegistry{
 		}
 		for(Shift shift:_shifts) {				
 			switch(type) {
-			case "Managed": {
+			case "Unmanaged": {
 				if(!shift.isManaged()) {
 					condition.add(shift.convertShiftToString());
 				}
